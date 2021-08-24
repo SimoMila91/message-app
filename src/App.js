@@ -6,7 +6,7 @@ import { Container } from '@material-ui/core';
 export default function App() {
   return (
     <div className="App">
-      <Container disableGutters={true} maxWidth='false'>
+      <Container disableGutters={true} maxWidth={false}>
         <Header />
         <MessageList />
       </Container>

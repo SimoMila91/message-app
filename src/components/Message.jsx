@@ -14,6 +14,8 @@ const useStyles = makeStyles(() => ({
     borderColor: '#cfd8dc',
     borderRadius: 12,
     backgroundColor: '#fff',
+    minHeight: '16rem',
+    position: 'relative'
   },
   bgGround: {
     backgroundColor: 'rgb(254, 237, 0)',
@@ -42,7 +44,9 @@ const useStyles = makeStyles(() => ({
   },
   buttonStyle: {
     display: 'block',
-    position: 'relative',
+    position: 'absolute',
+    bottom: 0,
+    width: '95%',
   },
   messageStyle: {
     fontSize: '0.9rem',
@@ -54,7 +58,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 
-export default function Message(props) {
+export default function Message({ messagesArray }) {
   const styles = useStyles();
 
   return (
@@ -64,19 +68,19 @@ export default function Message(props) {
           fonts={[{ font: 'Montserrat', weights: [400, 700] }]}
         />
       </NoSsr>
-    <Card className={cx(styles.card, styles.zoom)}>
+    <Card key={messagesArray.idMessage} className={cx(styles.card, styles.zoom)}>
         <Box px={1} mt={2} mb={2}>
-          <h2 className={cx(styles.titleFont, styles.header)}>Simone Milanesio</h2>
+          <h2 className={cx(styles.titleFont, styles.header)}>{ messagesArray.name }</h2>
         </Box>
         <Box py={1} className={cx(styles.titleFont, styles.ribbon, styles.bgGround)}>
-           21/02/2020
+          { messagesArray.date }
         </Box>
         <CardContent>
           <Box px={1} mt={1} className={cx(styles.titleFont, styles.messageStyle)}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt ratione similique laboriosam expedita 
+            { messagesArray.message }
           </Box>
         </CardContent>
-        <CardActions disabledSpacing className={styles.buttonStyle}>
+        <CardActions className={styles.buttonStyle}>
           <IconButton aria-label="like">
             <ThumbUpIcon />
           </IconButton>

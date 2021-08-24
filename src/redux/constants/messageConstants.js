@@ -1,4 +1,0 @@
-export const ADD_MESSAGE = "ADD_MESSAGE";
-export const DELETE_MESSAGE = "DELETE_MESSAGE";
-export const UPDATE_MESSAGE = "UPDATE_MESSAGE";
- 
