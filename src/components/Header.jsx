@@ -9,7 +9,7 @@ const useStyles = makeStyles(() => ({
     color: '#000'
   },
   padHeader: {
-    padding: '5% 0',
+    padding: '3% 0',
   },
 }))
 
@@ -20,7 +20,7 @@ export default function Header() {
     <Container className={classes.padHeader}>
       <NoSsr>
         <GoogleFontLoader 
-          fonts={[{ font: 'Lato', weights: [300] }]}
+          fonts={[{ font: 'Lato', weights: ['bold'] }]}
         />
       </NoSsr>
        <Typography className={classes.titleFont}  variant="h2" gutterBottom>Message Byte</Typography>

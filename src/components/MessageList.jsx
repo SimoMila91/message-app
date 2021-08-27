@@ -22,7 +22,7 @@ export default function MessageList() {
           loading ? <h2>Loading...</h2> : error ? <h2>{error}</h2> : 
           messages.map((message, i) => (
             <Grid key={i} item xs={12} md={6} lg={3} xl={2}>
-              <Message messagesArray={message} />
+              <Message messagesArray={message} id={i} />
             </Grid>
           ))
         }

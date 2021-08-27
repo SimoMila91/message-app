@@ -1,7 +1,7 @@
 import { Container, TextField, makeStyles, Typography, IconButton, Paper, Button, InputAdornment, withStyles } from '@material-ui/core';
 import CreateIcon from '@material-ui/icons/Create';
 import SendIcon from '@material-ui/icons/Send';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { addMessage as upload } from '../redux/actions/index';
 import cx from 'clsx';
@@ -69,8 +69,17 @@ export default function InputMessage() {
   const [show, setShow] = useState(false);
   const [message, setMessage] = useState('');
   const [name, setName] = useState('');
+  const [control, setControl] = useState(false);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (message.length > 100 || message === ""  || name  === "") {
+      setControl(false);
+    } else {
+      setControl(true);
+    }
+  }, [message, name, control])
 
   const handleWrite = e => {
     e.preventDefault();
@@ -97,6 +106,10 @@ export default function InputMessage() {
   };    
 
   const err = name === "" && message !== ""  ? { error: true, helperText: 'Name is required' } : null;  
+
+  const showButt = !control ?  { disabled: true  } : null; 
+
+  const errMes = message.length > 100 ? { helperText: "Max length 100", error: true } : null; 
 
   return (
     <Container>
@@ -145,9 +158,10 @@ export default function InputMessage() {
                       maxRows={5}
                       value={message}
                       onChange={e =>  setMessage(e.target.value)}
-                      placeholder="The pen is on the table sir...."
+                      placeholder="The pen is on the table sir....MAX TEXT 100"
+                      {...errMes}
                     />
-                    <Button onClick={handleClick} type="submit" className={classes.buttonStyle} size="small" variant="contained" endIcon={<SendIcon />}>
+                    <Button onClick={handleClick} type="submit" className={classes.buttonStyle} size="small" variant="contained" endIcon={<SendIcon />} {...showButt}>
                       Send
                     </Button>   
               </div>
